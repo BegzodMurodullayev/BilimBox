@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BilimBox</title>
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem('bb_user_v1');
+        var user = raw ? JSON.parse(raw) : null;
+        var target = user && user.ism ? '/ui/menu.html' : '/ui/kirish.html';
+        window.location.replace(target);
+      } catch (error) {
+        window.location.replace('/ui/kirish.html');
+      }
+    })();
+  </script>
+</head>
+<body></body>
+</html>

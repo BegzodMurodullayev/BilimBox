@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BilimBox - O'qish</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background: #141629;
+    color: #eef4ff;
+    display: flex;
+    flex-direction: column;
+  }
+  .titlebar {
+    min-height: 56px;
+    padding: calc(10px + env(safe-area-inset-top, 0px)) 14px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: linear-gradient(180deg, rgba(6, 11, 28, 0.98), rgba(12, 18, 40, 0.95));
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+  }
+  .tl, .tr {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tr { justify-content: flex-end; }
+  .back-btn, .tool-btn {
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: #dce7ff;
+    cursor: pointer;
+    font: inherit;
+  }
+  .back-btn {
+    padding: 11px 16px;
+    border-color: rgba(251, 191, 36, 0.45);
+    background: linear-gradient(135deg, rgba(251, 191, 36, 0.95), rgba(249, 115, 22, 0.92));
+    color: #1d1405;
+    font-weight: 800;
+    box-shadow: 0 10px 24px rgba(249, 115, 22, 0.28);
+  }
+  .back-btn:hover,
+  .back-btn:active {
+    filter: brightness(1.04);
+  }
+  .book-meta {
+    min-width: 0;
+  }
+  .k-nom {
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(230,238,255,0.95);
+    max-width: 420px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .k-meta {
+    font-size: 12px;
+    color: rgba(180,200,255,0.52);
+    margin-top: 2px;
+  }
+  .info-chip {
+    padding: 9px 12px;
+    border-radius: 10px;
+    background: rgba(96,165,250,0.14);
+    border: 1px solid rgba(96,165,250,0.22);
+    color: #8ec0ff;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .reader-shell {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .reader-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px 14px;
+    background: rgba(12, 16, 36, 0.94);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .tool-btn.primary {
+    border-color: rgba(96, 165, 250, 0.35);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.9), rgba(37, 99, 235, 0.9));
+    color: #eef6ff;
+    font-weight: 700;
+    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+  }
+  .reader-stage {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    padding: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: linear-gradient(180deg, #16182c, #101222);
+  }
+  .reader-canvas {
+    width: 100%;
+    max-width: 980px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 16px 44px rgba(0,0,0,0.35);
+  }
+  .loading-wrap {
+    position: absolute;
+    inset: 56px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(20,22,41,0.96);
+    gap: 16px;
+    z-index: 10;
+  }
+  .spinner {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 3px solid rgba(96,165,250,0.15);
+    border-top-color: #60a5fa;
+    animation: spin 0.8s linear infinite;
+  }
+  .loading-txt {
+    font-size: 14px;
+    color: rgba(180,200,255,0.6);
+  }
+  @media (max-width: 640px) {
+    .titlebar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .tl, .tr, .toolbar-group {
+      width: 100%;
+    }
+    .tr {
+      justify-content: flex-start;
+    }
+    .back-btn, .tool-btn {
+      min-height: 46px;
+    }
+    .reader-toolbar {
+      padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+    }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+<link rel="stylesheet" href="../../bridge/mobile-overrides.css">
+<script src="../../bridge/file-manifest.js"></script>
+<script src="../../bridge/bridge.js"></script>
+<script>window.BilimBoxBridge.init('/bolimlar/kutubxona');</script>
+</head>
+<body>
+
+<div class="titlebar">
+  <div class="tl">
+    <button class="back-btn" onclick="goBack()">Orqaga</button>
+    <div class="book-meta">
+      <div class="k-nom" id="k-nom">Yuklanmoqda...</div>
+      <div class="k-meta" id="k-meta"></div>
+    </div>
+  </div>
+  <div class="tr">
+    <span class="info-chip" id="k-janr"></span>
+  </div>
+</div>
+
+<div class="reader-shell">
+  <div class="reader-toolbar">
+    <div class="toolbar-group">
+      <button class="tool-btn" onclick="changePage(-1)">Oldingi</button>
+      <span class="info-chip" id="page-indicator">1 / 1</span>
+      <button class="tool-btn" onclick="changePage(1)">Keyingi</button>
+    </div>
+    <div class="toolbar-group">
+      <button class="tool-btn primary" onclick="openExternalPdf()">Tashqi ochish</button>
+      <button class="tool-btn" onclick="changeZoom(-0.15)">A-</button>
+      <span class="info-chip" id="zoom-indicator">100%</span>
+      <button class="tool-btn" onclick="changeZoom(0.15)">A+</button>
+    </div>
+  </div>
+  <div class="reader-stage">
+    <canvas class="reader-canvas" id="pdf-canvas"></canvas>
+  </div>
+</div>
+
+<div class="loading-wrap" id="loading">
+  <div class="spinner"></div>
+  <div class="loading-txt">PDF ochilmoqda...</div>
+</div>
+
+<script type="module">
+const { ipcRenderer } = require('electron');
+import * as pdfjsLib from '../../vendor/pdfjs/pdf.mjs';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = '../../vendor/pdfjs/pdf.worker.mjs';
+
+const canvas = document.getElementById('pdf-canvas');
+const ctx = canvas.getContext('2d');
+const loading = document.getElementById('loading');
+const pageIndicator = document.getElementById('page-indicator');
+const zoomIndicator = document.getElementById('zoom-indicator');
+
+let pdfDoc = null;
+let currentBook = null;
+let currentPage = 1;
+let currentScale = 1;
+let rendering = false;
+let pendingPage = null;
+let currentPdfUrl = '';
+
+function pageKey(book) {
+  return `bb_reader_page_${book && book.id ? book.id : 'default'}`;
+}
+
+function saveCurrentPage() {
+  if (currentBook) {
+    localStorage.setItem(pageKey(currentBook), String(currentPage));
+  }
+}
+
+async function renderPage(pageNumber) {
+  if (!pdfDoc) return;
+  rendering = true;
+  const page = await pdfDoc.getPage(pageNumber);
+  const rawViewport = page.getViewport({ scale: currentScale });
+  const maxWidth = Math.min(window.innerWidth - 28, 980);
+  const fitScale = maxWidth / rawViewport.width;
+  const viewport = page.getViewport({ scale: currentScale * fitScale });
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  await page.render({ canvasContext: ctx, viewport }).promise;
+  pageIndicator.textContent = `${currentPage} / ${pdfDoc.numPages}`;
+  zoomIndicator.textContent = `${Math.round(currentScale * 100)}%`;
+  loading.style.display = 'none';
+  rendering = false;
+  saveCurrentPage();
+  if (pendingPage !== null) {
+    const nextPage = pendingPage;
+    pendingPage = null;
+    currentPage = nextPage;
+    renderPage(currentPage);
+  }
+}
+
+function queueRender(pageNumber) {
+  if (rendering) {
+    pendingPage = pageNumber;
+  } else {
+    renderPage(pageNumber);
+  }
+}
+
+window.changePage = function changePage(delta) {
+  if (!pdfDoc) return;
+  const nextPage = currentPage + delta;
+  if (nextPage < 1 || nextPage > pdfDoc.numPages) return;
+  currentPage = nextPage;
+  queueRender(currentPage);
+};
+
+window.changeZoom = function changeZoom(delta) {
+  currentScale = Math.max(0.75, Math.min(2.5, currentScale + delta));
+  queueRender(currentPage);
+};
+
+window.goBack = function goBack() {
+  window.location.href = '/bolimlar/kutubxona/index.html';
+};
+
+window.openExternalPdf = function openExternalPdf() {
+  if (!currentPdfUrl) return;
+  window.open(currentPdfUrl, '_blank', 'noopener,noreferrer');
+};
+
+window.onload = async () => {
+  currentBook = await ipcRenderer.invoke('joriy-kitob-olish');
+  if (!currentBook || !currentBook.fayl_yoli) {
+    loading.innerHTML = '<span style="color:#f87171;font-size:16px">Kitob topilmadi!</span>';
+    return;
+  }
+
+  document.getElementById('k-nom').textContent = currentBook.nom;
+  document.getElementById('k-meta').textContent = [currentBook.yozuvchi, currentBook.janr].filter(Boolean).join(' · ');
+  document.getElementById('k-janr').textContent = currentBook.janr || '';
+
+  const savedPage = parseInt(localStorage.getItem(pageKey(currentBook)) || String(currentBook.boshlash_sahifa || 1), 10);
+  currentPage = Number.isFinite(savedPage) && savedPage > 0 ? savedPage : 1;
+
+  try {
+    currentPdfUrl = window.BilimBoxBridge.resolveFileUrl(currentBook.fayl_yoli.replace(/\\/g, '/'));
+    pdfDoc = await pdfjsLib.getDocument(currentPdfUrl).promise;
+    currentPage = Math.min(currentPage, pdfDoc.numPages);
+    await renderPage(currentPage);
+  } catch (error) {
+    loading.innerHTML = '<span style="color:#f87171;font-size:16px">PDF ochilmadi!</span>';
+  }
+};
+
+window.addEventListener('resize', () => {
+  if (pdfDoc) queueRender(currentPage);
+});
+</script>
+</body>
+</html>

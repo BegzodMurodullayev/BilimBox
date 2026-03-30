@@ -1,0 +1,17 @@
+{
+  "name": "bilimbox-mobile",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "prepare:web": "node prepare-web.js",
+    "clean:web": "node clean-web.js",
+    "sync:android": "npm run prepare:web && npx cap sync android",
+    "build:apk": "npm run prepare:web && cd android && gradlew.bat assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.4.3",
+    "@capacitor/cli": "^7.4.3",
+    "@capacitor/core": "^7.4.3"
+  }
+}

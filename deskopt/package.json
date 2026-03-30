@@ -1,0 +1,80 @@
+{
+  "name": "bilimbox",
+  "version": "1.0.0",
+  "description": "bir quti - cheksiz bilim",
+  "author": "BilimBox",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder --win nsis",
+    "dist:portable": "electron-builder --win portable"
+  },
+  "type": "commonjs",
+  "devDependencies": {
+    "electron": "^41.0.3",
+    "electron-builder": "^26.0.12"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.8.0",
+    "pdfjs-dist": "^5.5.207"
+  },
+  "build": {
+    "appId": "uz.bilimbox.desktop",
+    "productName": "BilimBox",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "database.js",
+      "package.json",
+      "bilimbox.db",
+      "ui/**/*",
+      "bolimlar/**/*",
+      "!**/*.log",
+      "!**/Thumbs.db"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/better-sqlite3/**/*"
+    ],
+    "npmRebuild": true,
+    "buildDependenciesFromSource": false,
+    "win": {
+      "icon": "icon.ico",
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false,
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "BilimBox",
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "installerHeaderIcon": "icon.ico"
+    },
+    "portable": {
+      "artifactName": "BilimBox-Portable-${version}.${ext}"
+    },
+    "artifactName": "BilimBox-Setup-${version}-${arch}.${ext}"
+  }
+}

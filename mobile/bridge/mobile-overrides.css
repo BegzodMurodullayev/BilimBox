@@ -1,0 +1,479 @@
+html.bb-mobile-shell, html.bb-mobile-shell body {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+html.bb-mobile-shell body {
+  transform: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  transform-origin: top left !important;
+}
+
+html.bb-mobile-shell .btn-min,
+html.bb-mobile-shell .btn-max,
+html.bb-mobile-shell .btn-close,
+html.bb-mobile-shell .win.min,
+html.bb-mobile-shell .win.max,
+html.bb-mobile-shell .win.close {
+  display: none !important;
+}
+
+html.bb-mobile-shell .titlebar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  height: 56px !important;
+  padding: 0 14px !important;
+  -webkit-app-region: no-drag !important;
+}
+
+html.bb-mobile-shell .shell,
+html.bb-mobile-shell .container,
+html.bb-mobile-shell .content {
+  inset: auto !important;
+}
+
+@media (max-width: 900px) {
+  html.bb-mobile-shell body {
+    font-size: 15px !important;
+  }
+
+  html.bb-mobile-shell .card {
+    width: 100% !important;
+  }
+
+  html.bb-mobile-shell .app,
+  html.bb-mobile-shell .workspace,
+  html.bb-mobile-shell .quiz,
+  html.bb-mobile-shell .summary,
+  html.bb-mobile-shell .layout {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  html.bb-mobile-shell .left,
+  html.bb-mobile-shell .main,
+  html.bb-mobile-shell .stack,
+  html.bb-mobile-shell .sidecol,
+  html.bb-mobile-shell .side,
+  html.bb-mobile-shell .sidebar {
+    min-height: auto !important;
+  }
+
+  html.bb-mobile-shell .cards,
+  html.bb-mobile-shell .overview,
+  html.bb-mobile-shell .sumgrid,
+  html.bb-mobile-shell .grid,
+  html.bb-mobile-shell .choice-grid,
+  html.bb-mobile-shell .board,
+  html.bb-mobile-shell .dashboard,
+  html.bb-mobile-shell .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.bb-mobile-shell .toolbar,
+  html.bb-mobile-shell .toolbar-right,
+  html.bb-mobile-shell .status-bar,
+  html.bb-mobile-shell .detail-actions,
+  html.bb-mobile-shell .side-actions,
+  html.bb-mobile-shell .sumacts {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: flex-start !important;
+  }
+
+  html.bb-mobile-shell .panel,
+  html.bb-mobile-shell .cards-panel,
+  html.bb-mobile-shell .detail-panel,
+  html.bb-mobile-shell .hero,
+  html.bb-mobile-shell .soft-box,
+  html.bb-mobile-shell .wizard,
+  html.bb-mobile-shell .main,
+  html.bb-mobile-shell .qcard {
+    border-radius: 22px !important;
+  }
+
+  html.bb-mobile-shell button,
+  html.bb-mobile-shell .btn,
+  html.bb-mobile-shell .navbtn,
+  html.bb-mobile-shell .soft-btn,
+  html.bb-mobile-shell .sort-btn,
+  html.bb-mobile-shell .pill,
+  html.bb-mobile-shell .fav-btn,
+  html.bb-mobile-shell .ghost,
+  html.bb-mobile-shell .next,
+  html.bb-mobile-shell .start,
+  html.bb-mobile-shell .ans,
+  html.bb-mobile-shell .quiz-btn,
+  html.bb-mobile-shell .holat-btn,
+  html.bb-mobile-shell .ochish-btn,
+  html.bb-mobile-shell .davom-btn {
+    min-height: 46px !important;
+    touch-action: manipulation;
+  }
+
+  html.bb-mobile-shell input,
+  html.bb-mobile-shell select,
+  html.bb-mobile-shell textarea {
+    min-height: 46px !important;
+    font-size: 16px !important;
+  }
+
+  html.bb-mobile-shell .shell {
+    padding: 12px !important;
+  }
+
+  html.bb-mobile-shell .shell,
+  html.bb-mobile-shell .screen {
+    position: relative !important;
+    inset: auto !important;
+  }
+
+  html.bb-mobile-shell .screen {
+    overflow: visible !important;
+  }
+
+  html.bb-mobile-shell .hero h1,
+  html.bb-mobile-shell .cards-title,
+  html.bb-mobile-shell .detail-head h2,
+  html.bb-mobile-shell .sarlavha h2,
+  html.bb-mobile-shell .logo h1 {
+    font-size: 26px !important;
+    line-height: 1.1 !important;
+  }
+
+  html.bb-mobile-shell .sarlavha {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    margin: 20px auto 10px !important;
+    width: calc(100% - 24px) !important;
+  }
+
+  html.bb-mobile-shell .grid {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    margin: 0 auto 24px !important;
+    padding: 12px !important;
+    gap: 14px !important;
+  }
+
+  html.bb-mobile-shell .btn {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 110px !important;
+  }
+
+  html.bb-mobile-shell .card {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    max-width: 420px !important;
+    margin: 24px auto !important;
+    padding: 28px 20px !important;
+  }
+
+  html.bb-mobile-shell table {
+    display: block !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  html.bb-mobile-shell iframe.pdf-frame {
+    min-height: calc(100svh - 56px) !important;
+  }
+
+  html.bb-mobile-shell .games-grid-wrap {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    transform: none !important;
+    z-index: 10 !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto 24px !important;
+    padding: 0 12px 20px !important;
+  }
+
+  html.bb-mobile-shell .games-grid-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    margin: 0 0 14px !important;
+    justify-content: stretch !important;
+  }
+
+  html.bb-mobile-shell .games-grid-row-bottom {
+    margin-bottom: 0 !important;
+  }
+
+  html.bb-mobile-shell .games-grid-wrap {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  html.bb-mobile-shell .games-grid-row-top,
+  html.bb-mobile-shell .games-grid-row-middle,
+  html.bb-mobile-shell .games-grid-row-bottom {
+    display: contents !important;
+  }
+
+  html.bb-mobile-shell .games-grid-wrap .btn {
+    width: 100% !important;
+  }
+
+  html.bb-mobile-shell .games-grid-row-bottom .btn:last-child {
+    grid-column: 1 / -1 !important;
+    max-width: 280px !important;
+    justify-self: center !important;
+  }
+
+  html.bb-mobile-shell .layout {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    height: auto !important;
+    min-height: calc(100svh - 56px) !important;
+  }
+
+  html.bb-mobile-shell .sidebar {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255,255,255,0.08) !important;
+    overflow: visible !important;
+    padding: 12px !important;
+  }
+
+  html.bb-mobile-shell .main {
+    overflow: visible !important;
+    min-width: 0 !important;
+  }
+
+  html.bb-mobile-shell .topbar {
+    flex-wrap: wrap !important;
+    padding: 12px !important;
+  }
+
+  html.bb-mobile-shell .q-wrap {
+    width: 100% !important;
+    flex: 1 0 100% !important;
+  }
+
+  html.bb-mobile-shell .qtur-wrap {
+    width: 100% !important;
+    overflow-x: auto !important;
+    padding-bottom: 2px !important;
+  }
+
+  html.bb-mobile-shell .jadval-wrap {
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  html.bb-mobile-shell .detail-ichki {
+    padding: 14px !important;
+    flex-direction: column !important;
+  }
+
+  html.bb-mobile-shell .detail-ong {
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  html.bb-mobile-shell .ochish-btn,
+  html.bb-mobile-shell .davom-btn {
+    width: 100% !important;
+  }
+
+  html.bb-mobile-shell .quiz,
+  html.bb-mobile-shell .summary,
+  html.bb-mobile-shell .layout {
+    height: auto !important;
+  }
+
+  html.bb-mobile-shell .screen {
+    padding: 72px 12px 18px !important;
+    justify-content: flex-start !important;
+    min-height: 100svh !important;
+  }
+
+  html.bb-mobile-shell .screen.hidden {
+    display: none !important;
+  }
+
+  html.bb-mobile-shell .card,
+  html.bb-mobile-shell .oyun-card,
+  html.bb-mobile-shell .natija-card {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+  }
+
+  html.bb-mobile-shell .tabrik-card {
+    min-width: 0 !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+  }
+
+  html.bb-mobile-shell .tanlov-grid,
+  html.bb-mobile-shell .daraja-grid,
+  html.bb-mobile-shell .tur-grid,
+  html.bb-mobile-shell .amallar-grid,
+  html.bb-mobile-shell .savol-grid,
+  html.bb-mobile-shell .toggle-grid,
+  html.bb-mobile-shell .tanlash-grid,
+  html.bb-mobile-shell .hajm-chip,
+  html.bb-mobile-shell .actions {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  html.bb-mobile-shell .oyun-layout {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+  }
+
+  html.bb-mobile-shell .oyun-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 14px !important;
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 0 auto !important;
+  }
+
+  html.bb-mobile-shell .chap-panel,
+  html.bb-mobile-shell .ong-panel {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  html.bb-mobile-shell .yon-panel {
+    order: 2 !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    padding-top: 0 !important;
+  }
+
+  html.bb-mobile-shell .taxta-wrap {
+    order: 1 !important;
+    width: 100% !important;
+  }
+
+  html.bb-mobile-shell .taxta,
+  html.bb-mobile-shell .sudoku-grid {
+    margin: 0 auto !important;
+    max-width: 100% !important;
+  }
+
+  html.bb-mobile-shell .status-box,
+  html.bb-mobile-shell .oyun-info,
+  html.bb-mobile-shell .oyun-topbar,
+  html.bb-mobile-shell .oyunchi-karta,
+  html.bb-mobile-shell .info-chip {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  html.bb-mobile-shell .oyun-topbar,
+  html.bb-mobile-shell .oyun-info,
+  html.bb-mobile-shell .javob-wrap,
+  html.bb-mobile-shell .n-stats {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  html.bb-mobile-shell .raqam-panel {
+    justify-content: center !important;
+    width: 100% !important;
+  }
+
+  html.bb-mobile-shell input[type="number"] {
+    width: min(180px, 100%) !important;
+  }
+
+  html.bb-mobile-shell .wizard-top,
+  html.bb-mobile-shell .head,
+  html.bb-mobile-shell .foot {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  html.bb-mobile-shell .wizard-stage {
+    align-self: flex-start !important;
+  }
+
+  html.bb-mobile-shell .timer {
+    text-align: left !important;
+  }
+
+  html.bb-mobile-shell .track {
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 480px) {
+  html.bb-mobile-shell .shell {
+    padding: 10px !important;
+  }
+
+  html.bb-mobile-shell .panel,
+  html.bb-mobile-shell .cards-panel,
+  html.bb-mobile-shell .detail-panel,
+  html.bb-mobile-shell .hero,
+  html.bb-mobile-shell .soft-box,
+  html.bb-mobile-shell .wizard,
+  html.bb-mobile-shell .main,
+  html.bb-mobile-shell .qcard,
+  html.bb-mobile-shell .card {
+    border-radius: 18px !important;
+  }
+
+  html.bb-mobile-shell .games-grid-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.bb-mobile-shell .games-grid-wrap {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.bb-mobile-shell .yon-panel {
+    grid-template-columns: 1fr !important;
+  }
+
+  html.bb-mobile-shell .chap-panel,
+  html.bb-mobile-shell .ong-panel {
+    grid-template-columns: 1fr !important;
+  }
+}

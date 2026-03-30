@@ -1,0 +1,6 @@
+{
+  "appId": "uz.bilimbox.mobile",
+  "appName": "BilimBox",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
